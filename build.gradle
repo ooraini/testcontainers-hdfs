@@ -7,7 +7,7 @@ plugins {
 }
 
 group 'io.github.omaraloraini'
-version '1.2-SNAPSHOT'
+version '1.2'
 
 publishing {
     publications {
@@ -45,7 +45,15 @@ publishing {
     repositories {
         maven {
             name = 'snapshot'
-            url = "https://oss.sonatype.org/content/repositories/snapshots"
+            if (project.version.endsWith("-SNAPSHOT")) {
+                url "https://oss.sonatype.org/content/repositories/snapshots"
+            } else {
+                url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            }
+            credentials {
+                username = ossrhUsername
+                password = ossrhPassword
+            }
         }
     }
 }
