@@ -9,8 +9,8 @@ import java.io.OutputStream;
 import java.nio.file.*;
 import java.util.Objects;
 
-public class Main {
-    public static void main(String[] args) throws IOException {
+class Main {
+    static void main(String[] args) throws IOException {
         final String hdfsData = System.getenv("HDFS_DATA");
         final String hdfsConfig = System.getenv("HDFS_CONFIG");
         Objects.requireNonNull(hdfsData);
