@@ -10,8 +10,34 @@ version '1.1'
 
 publishing {
     publications {
-        myLibrary(MavenPublication) {
+        mavenJava(MavenPublication) {
             from components.java
+            pom {
+                name = 'testcontainers-hdfs'
+                description = 'Docker container image for Hadoop HDFS mini cluster, and a testcontainers libray API for using it'
+                url = 'https://github.com/omaraloraini/testcontainers-hdfs'
+
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'http://www.opensource.org/licenses/mit-license.php'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'omaraloraini'
+                        name = 'Omar Aloraini'
+                        email = 'aloraini.omar@gmail.com'
+                    }
+                }
+
+                scm {
+                    connection = 'scm:git:git://github.com:omaraloraini/testcontainers-hdfs.git'
+                    developerConnection = 'scm:git:ssh://github.com:omaraloraini/testcontainers-hdfs.git'
+                    url = 'https://github.com/omaraloraini/testcontainers-hdfs/tree/main'
+                }
+            }
         }
     }
 
