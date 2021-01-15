@@ -5,7 +5,7 @@ plugins {
     id 'maven-publish'
 }
 
-group 'com.github.omaraloraini'
+group 'io.github.omaraloraini'
 version '1.1'
 
 publishing {
