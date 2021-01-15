@@ -1,16 +1,35 @@
 plugins {
     id 'java'
+    id 'java-library'
     id 'application'
+    id 'maven-publish'
 }
 
 group 'com.github.omaraloraini'
-version '1.0'
+version '1.1'
+
+publishing {
+    publications {
+        myLibrary(MavenPublication) {
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            name = 'myRepo'
+            url = "file://${buildDir}/repo"
+        }
+    }
+}
 
 repositories {
     mavenCentral()
 }
 
-
+java {
+    withSourcesJar()
+}
 
 application {
     mainClass = 'omaraloraini.testcontainers.hdfs.Main'
@@ -19,4 +38,6 @@ application {
 dependencies {
     // https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-minicluster
     implementation group: 'org.apache.hadoop', name: 'hadoop-minicluster', version: '3.0.3'
+    // https://mvnrepository.com/artifact/org.testcontainers/testcontainers
+    implementation group: 'org.testcontainers', name: 'testcontainers', version: '1.15.1'
 }

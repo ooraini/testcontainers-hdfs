@@ -6,11 +6,15 @@ import org.apache.hadoop.hdfs.MiniDFSCluster;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.Objects;
 
 class Main {
-    static void main(String[] args) throws IOException {
+    static final String READY_MESSAGE = "omaraloraini.testcontainers.hdfs-ready";
+    public static void main(String[] args) throws IOException {
         final String hdfsData = System.getenv("HDFS_DATA");
         final String hdfsConfig = System.getenv("HDFS_CONFIG");
         Objects.requireNonNull(hdfsData);
@@ -27,6 +31,10 @@ class Main {
             .format(true)
             .build();
 
+        Runtime.getRuntime().addShutdownHook(new Thread(cluster::shutdown));
+
+        cluster.waitActive();
+
         try (OutputStream outputStream = Files.newOutputStream(
             configPath,
             StandardOpenOption.TRUNCATE_EXISTING,
@@ -35,6 +43,6 @@ class Main {
             cluster.getConfiguration(0).writeXml(outputStream);
         }
 
-        Runtime.getRuntime().addShutdownHook(new Thread(cluster::shutdown));
+        System.out.println(READY_MESSAGE);
     }
 }
