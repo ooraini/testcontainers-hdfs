@@ -13,13 +13,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class HdfsContainer extends GenericContainer<HdfsContainer> {
+    static final String READY_MESSAGE = "omaraloraini.testcontainers.hdfs-ready";
     private static final String IMAGE = "omaraloraini/testcontainers-hdfs:3.0.3-1.1";
     private final Path configPath;
 
     public HdfsContainer() {
         super(DockerImageName.parse(IMAGE));
         setWaitStrategy(
-            Wait.forLogMessage(Main.READY_MESSAGE + "\\n", 1)
+            Wait.forLogMessage(READY_MESSAGE + "\\n", 1)
         );
         setNetworkMode("host");
         final String envPath = System.getenv("HDFS_CONFIG");
