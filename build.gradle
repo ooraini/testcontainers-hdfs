@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'io.github.omaraloraini'
-version '3.0.3-3-SNAPSHOT'
+version '3.0.3-3'
 
 publishing {
     publications {
