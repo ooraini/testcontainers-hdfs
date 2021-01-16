@@ -23,8 +23,7 @@ public class HdfsContainer extends GenericContainer<HdfsContainer> {
             Wait.forLogMessage(READY_MESSAGE + "\\n", 1)
         );
         setNetworkMode("host");
-        final String envPath = System.getenv("HDFS_CONFIG");
-        configPath = envPath == null ? Paths.get("/config") : Paths.get(envPath);
+        configPath = Paths.get("/config/core-site.xml");
     }
 
     private final Configuration hadoopConf = new Configuration();
@@ -35,7 +34,7 @@ public class HdfsContainer extends GenericContainer<HdfsContainer> {
     @Override
     protected void containerIsStarted(InspectContainerResponse containerInfo) {
         try {
-            String xml = execInContainer("cat", configPath.resolve("core-site.xml").toString()).getStdout()
+            String xml = execInContainer("cat", configPath.toString()).getStdout()
                 .replace("\n","").replace("\t","");
 
             hadoopConf.addResource(new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8)));

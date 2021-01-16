@@ -10,15 +10,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.Objects;
 
 class Main {
     static final String READY_MESSAGE = "omaraloraini.testcontainers.hdfs-ready";
     public static void main(String[] args) throws IOException {
-        final String hdfsData = System.getenv("HDFS_DATA");
-        final String hdfsConfig = System.getenv("HDFS_CONFIG");
-        Objects.requireNonNull(hdfsData);
-        Objects.requireNonNull(hdfsConfig);
+        final String hdfsData = "/data";
+        final String hdfsConfig = "/config";
 
         File dataFile = new File(hdfsData);
         Path configPath = Paths.get(hdfsConfig, "core-site.xml");
