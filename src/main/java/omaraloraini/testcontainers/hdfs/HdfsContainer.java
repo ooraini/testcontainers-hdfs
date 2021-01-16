@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 
 public class HdfsContainer extends GenericContainer<HdfsContainer> {
     static final String READY_MESSAGE = "omaraloraini.testcontainers.hdfs-ready";
-    private static final String IMAGE = "omaraloraini/testcontainers-hdfs:3.0.3-1.1";
+    private static final String IMAGE = "omaraloraini/testcontainers-hdfs:3.0.3-3";
     private final Path configPath;
 
     public HdfsContainer() {
