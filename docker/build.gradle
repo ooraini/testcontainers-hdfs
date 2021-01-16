@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'io.github.omaraloraini'
+version '3.0.3-3-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+application {
+    mainClass = 'omaraloraini.testcontainers.hdfs.Main'
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-minicluster
+    implementation group: 'org.apache.hadoop', name: 'hadoop-minicluster', version: '3.0.3'
+}
